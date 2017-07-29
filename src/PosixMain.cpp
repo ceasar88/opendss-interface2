@@ -24,6 +24,9 @@
 #include "IServer.hpp"
 #include "CRtdsAdapter.hpp"
 #include "CSimulationAdapter.hpp"
+#include "COpendssAdapter.hpp"
+#include "CDgiAdapter.hpp"
+#include "CSimulationAdapter.hpp"
 
 #include <set>
 #include <list>
@@ -64,7 +67,15 @@ void ReadXML( std::string xml, std::list< boost::shared_ptr<IServer> > & list )
         }
         boost::shared_ptr<IServer> adapter;
         
-        if( type == "rtds" )
+        if( type == "opendss" )
+        {
+            adapter.reset( new adapter::COpendssAdapter(port,child.second) );
+        }
+        else if( type == "dgi" )
+        {
+            adapter.reset( new adapter::CDgiAdapter(port,child.second) );
+        }
+        else if( type == "rtds" )
         {
             adapter.reset( new adapter::CRtdsAdapter(port,child.second) );
         }

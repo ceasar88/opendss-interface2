@@ -37,7 +37,7 @@ set(
     src/CAdapter.cpp
     src/CSimulationAdapter.cpp
     src/CRtdsAdapter.cpp
-)
+        src/COpendssAdapter.cpp src/CDgiAdpater.cpp)
 add_library(simserv ${PROJECT_FILES})
 
 # create the project executable
